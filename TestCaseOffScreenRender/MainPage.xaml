@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:data="clr-namespace:TestCaseOffScreenRender.Models"
+             xmlns:app="clr-namespace:TestCaseOffScreenRender"
+             x:DataType="app:MainPage"
+             x:Class="TestCaseOffScreenRender.MainPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Photo" Clicked="ToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout x:Name="Stack" BindableLayout.ItemsSource="{Binding Categories}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="data:CategoryModel">
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="{Binding Name}" FontSize="Large">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Click}" CommandParameter="{Binding .}"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <StackLayout IsVisible="{Binding Expanded}" BindableLayout.ItemsSource="{Binding Items}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="data:ItemModel">
+                                    <StackLayout Orientation="Horizontal" Padding="20,10,0,10">
+                                        <Label Text="{Binding Name}" FontSize="Title"/>
+                                        <Label Text="{Binding Description}" FontSize="Subtitle"/>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </StackLayout>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
