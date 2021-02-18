@@ -26,13 +26,6 @@ namespace TestCaseOffScreenRender
                 {
                     Name = $"Category {i:00}"
                 };
-                category.PropertyChanged += (s, e) =>
-                {
-                    if (e.PropertyName == "Expanded")
-                    {
-                        Device.PlatformInvalidator.Invalidate(Stack);
-                    }
-                };
                 for (int j = 0; j < 10; j++)
                 {
                     category.Items.Add(new Models.ItemModel()
@@ -51,6 +44,7 @@ namespace TestCaseOffScreenRender
             base.OnAppearing();
         }
 
+        //Testing Xamarin.Essentials.MediaPicker in Xiaomi phone, taking photo results in a 90 degrees clockwise photo
         private async void ToolbarItem_Clicked(object sender, EventArgs e)
         {
             try
