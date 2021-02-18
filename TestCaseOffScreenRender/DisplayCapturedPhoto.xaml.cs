@@ -12,21 +12,9 @@ namespace TestCaseOffScreenRender
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DisplayCapturedPhoto : ContentPage
     {
-        private ImageSource photo;
-        public ImageSource Photo
-        {
-            get { return photo; }
-            set
-            {
-                photo = value;
-                OnPropertyChanged("Photo");
-            }
-        }
-
         public DisplayCapturedPhoto()
         {
             InitializeComponent();
-            this.BindingContext = this;
         }
     }
 }

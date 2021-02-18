@@ -3,10 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:data="clr-namespace:TestCaseOffScreenRender.Models"
              xmlns:app="clr-namespace:TestCaseOffScreenRender"
-             x:DataType="app:MainPage"
+             xmlns:viewModels="clr-namespace:TestCaseOffScreenRender.ViewModels"
+             x:DataType="viewModels:MainPageModel"
              x:Class="TestCaseOffScreenRender.MainPage">
+    <ContentPage.BindingContext>
+        <viewModels:MainPageModel/>
+    </ContentPage.BindingContext>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Photo" Clicked="ToolbarItem_Clicked"/>
+        <ToolbarItem Text="Photo" Command="{Binding TakePhotoCommand}"/>
     </ContentPage.ToolbarItems>
     <ScrollView>
         <StackLayout x:Name="Stack" BindableLayout.ItemsSource="{Binding Categories}">
